@@ -27,7 +27,7 @@ $numRows = $result->num_rows;
         <?php } else { ?>
             <div class="mx-auto grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
                 <?php while ($image = mysqli_fetch_assoc($result)) : ?>
-                    <img src="/img/<?php echo $image['file_name']; ?>" alt="imagen de prueba" loading="lazy" onclick="viewImage(`<?php echo $image['file_name']; ?>`)">
+                    <img src="img/<?php echo $image['file_name']; ?>" alt="imagen de prueba" loading="lazy" onclick="viewImage(`<?php echo $image['file_name']; ?>`)">
                 <?php endwhile; ?>
             </div>
         <?php } ?>
@@ -49,8 +49,8 @@ $numRows = $result->num_rows;
     <div id="fb-root"></div>
 </div>
 
-<script src="/public/js/gallery.js"></script>
-<script src="/public/js/shareImage.js"></script>
+<script src="public/js/gallery.js"></script>
+<script src="public/js/shareImage.js"></script>
 <?php
 incluirTemplate('footer');
 ?>
