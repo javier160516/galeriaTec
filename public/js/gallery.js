@@ -4,7 +4,7 @@ const viewImage = (image) => {
 
     buttonsImage.innerHTML = `
         <button onclick="Publicar();" class="bg-blue-600 text-white p-3 hover:bg-blue-700 transition-all rounded-full"><i class="fa-solid fa-share"></i></button>
-        <a href="/img/${image}" download="${image.substring(0, image.length - 4)}">
+        <a href="gallery/img/${image}" download="${image.substring(0, image.length - 4)}">
         <button  class="bg-green-600 text-white p-3 hover:bg-green-700 transition-all rounded-full"><i class="fa-solid fa-cloud-arrow-down"></i></button>
         </a>
     `;
@@ -13,13 +13,13 @@ const viewImage = (image) => {
     overlay.classList.add('overlay');
     overlay.innerHTML = `
         <div class="relative w-10/12 lg:w-8/12 mx-auto h-4/6">
-            <img loading="lazy" src="/img/${image}" alt="Imagen Evento"/>
+            <img loading="lazy" src="/gallery/img/${image}" alt="Imagen Evento"/>
             <button class="btn-close" onclick="closeModal();">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="py-3 flex justify-center items-center gap-3">
                 <button onclick="Publicar();" class="bg-blue-600 text-white p-3 hover:bg-blue-700 transition-all rounded-full"><i class="fa-solid fa-share"></i></button>
-                <a href="/img/${image}" download="${image.substring(0, image.length - 4)}">
+                <a href="gallery/img/${image}" download="${image.substring(0, image.length - 4)}">
                     <button  class="bg-green-600 text-white p-3 hover:bg-green-700 transition-all rounded-full"><i class="fa-solid fa-cloud-arrow-down"></i></button>
                 </a>
             </div>
