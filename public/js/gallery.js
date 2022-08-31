@@ -18,7 +18,8 @@ const viewImage = (image) => {
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="py-3 flex justify-center items-center gap-3">
-                <button onclick="Publicar();" class="bg-blue-600 text-white p-3 hover:bg-blue-700 transition-all rounded-full"><i class="fa-solid fa-share"></i></button>
+                    <input value="${image}" hidden/>
+                    <button type="submit" onClick="logInWithFacebook()" class="bg-blue-600 text-white p-3 hover:bg-blue-700 transition-all rounded-full"><i class="fa-solid fa-share"></i></button>
                 <a href="gallery/img/${image}" download="${image.substring(0, image.length - 4)}">
                     <button  class="bg-green-600 text-white p-3 hover:bg-green-700 transition-all rounded-full"><i class="fa-solid fa-cloud-arrow-down"></i></button>
                 </a>
