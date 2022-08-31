@@ -5,11 +5,6 @@ incluirTemplate('header');
 $db = conectarDB();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // echo '<pre>';
-    // var_dump($_FILES);
-    // echo '</pre>';
-    // exit;
     if (count(array_filter($_FILES['image']['name'])) > 0) {
         //Crear carpeta
         $imageFolder = './img/';
@@ -40,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error'] = 'error';
     }
 }
-
 ?>
 
 <div class="py-10">
@@ -95,23 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 
-    <div class="w-11/12 mx-auto bg-white shadow-lg my-5 p-5 rounded-md">
+    <!-- <div class="w-11/12 mx-auto bg-white shadow-lg my-5 p-5 rounded-md">
         <h2 class="text-center text-xl font-bold uppercase mb-5 mt-3">Fotos a subir</h2>
         <div id="gallery" class="mx-auto grid justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-2"></div>
-    </div>
+    </div> -->
 </div>
 
 <script>
     document.title = 'SUBIR FOTOS TEC';
-    document.oncontextmenu = function() {
-        return false
-    };
-    document.ondragstart = function() {
-        return false
-    };
-    document.onselectstart = function() {
-        return false
-    };
 </script>
 <script src="/public/js/uploadFiles.js"></script>
 <?php

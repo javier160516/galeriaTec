@@ -36,7 +36,6 @@ dropArea.addEventListener('drop', (e) => {
 });
 
 function previewImages() {
-    const preview = document.querySelector('#gallery');
     
     if (this.files) {
       [].forEach.call(this.files, readAndPreview);
@@ -54,23 +53,7 @@ function previewImages() {
             location = '/panelUpload.php';
           }
         });
-      } // else...
-      
-      const reader = new FileReader();
-      
-      reader.addEventListener("load", function() {
-        const container = document.createElement('DIV');
-        container.classList.add('flex', 'justify-center');
-        const image = new Image();
-        image.height = 150;
-        image.width = 300;
-        image.title  = file.name;
-        image.src    = this.result;
-        image.setAttribute('loading', 'lazy');
-        container.appendChild(image);
-        preview.appendChild(container);
-      });
-      reader.readAsDataURL(file); 
+      }
     }
   }
   
