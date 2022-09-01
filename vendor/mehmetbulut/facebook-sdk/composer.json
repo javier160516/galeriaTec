@@ -1,0 +1,24 @@
+{
+    "name": "mehmetbulut/facebook-sdk",
+    "description": "Facebook SDK for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Facebook"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "~1.0",
+        "guzzlehttp/guzzle": "7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Facebook\\": "src/Facebook/"
+        },
+        "files": ["src/Facebook/polyfills.php"]
+    }
+}
