@@ -15,6 +15,10 @@ class ComposerStaticInit5d742019d8b296fb009aa65f86720bae
         array (
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'G' => 
+        array (
+            'Gumlet\\' => 7,
+        ),
         'F' => 
         array (
             'Facebook\\' => 9,
@@ -25,6 +29,10 @@ class ComposerStaticInit5d742019d8b296fb009aa65f86720bae
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'Gumlet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gumlet/php-image-resize/lib',
         ),
         'Facebook\\' => 
         array (

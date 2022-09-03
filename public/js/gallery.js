@@ -12,7 +12,7 @@ const viewImage = (image) => {
     const overlay = document.createElement('DIV');
     overlay.classList.add('overlay');
     overlay.innerHTML = `
-        <div class="relative w-10/12 lg:w-8/12 mx-auto h-4/6">
+        <div class="relative w-10/12 lg:w-8/12 xl:w-6/12  mx-auto h-4/6">
             <img loading="lazy" src="/gallery/img/${image}" alt="Imagen Evento"/>
             <button class="btn-close" onclick="closeModal();">
                 <i class="fa-solid fa-xmark"></i>

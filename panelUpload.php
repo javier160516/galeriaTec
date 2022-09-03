@@ -3,7 +3,7 @@ session_start();
 require 'includes/app.php';
 incluirTemplate('header');
 ?>
-    <div class="py-10">
+    <div class="w-full">
         <div class="w-11/12 bg-white shadow-lg mx-auto my-5 p-5 rounded-md">
             <h1 class="text-center text-2xl font-bold uppercase mb-5 mt-3">Subida de Fotos</h1>
             <form action="" id="form" method="POST" enctype="multipart/form-data" class="w-full mx-auto">
@@ -65,7 +65,7 @@ incluirTemplate('header');
                         showConfirmButton: 'true',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            location = '/panelUpload.php';
+                            location = '/gallery/panelUpload.php';
                         }
                     });
                 }
@@ -75,13 +75,13 @@ incluirTemplate('header');
                 formData.append('image', value[1]);
 
                 var http = new XMLHttpRequest();
-                var url = 'uploadImage.php';
+                var url = '/gallery/uploadImage.php';
                 http.open('POST', url, true);
 
                 http.onreadystatechange = function() {
                     if (this.readyState === 4) {
                         const data = JSON.parse(this.responseText);
-                        console.log(data);
+                        // console.log(data);
                         currentFile++;
                         document.getElementById('progress').innerHTML =
                             `<p>Subiendo: ${value[1].name}</p>
@@ -100,7 +100,7 @@ incluirTemplate('header');
                 }
                 http.send(formData);
             }
-        }
+        }        
     </script>
 <?php
 incluirTemplate('footer');

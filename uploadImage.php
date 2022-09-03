@@ -1,6 +1,9 @@
 <?php
 
+use Gumlet\ImageResize;
+
 require 'includes/app.php';
+require 'vendor/autoload.php';
 
 $db = conectarDB();
 
@@ -31,7 +34,9 @@ if(empty($_FILES['image']['name'])) {
     exit;
 }
 // Create the storage folder
-$path = './img/';
+$path = $_SERVER['DOCUMENT_ROOT'] .'/gallery/img/';
+echo $path;
+exit;
 if (!is_dir($path)) {
     mkdir($path);
 }
@@ -40,8 +45,12 @@ $image = $_FILES['image'];
 // Create an identifier (hash)
 $basename = md5(uniqid(rand(), true)) . '.jpg';
 
+$imageResize = new ImageResize($image['tmp_name']);
+$imageResize->scale(50);
+$imageResize->save($path. $basename);
 // Move uploaded file to the path with hashed name
-move_uploaded_file($image['tmp_name'], $path . $basename);
+//move_uploaded_file($imageResize, $path . $basename);
+
 
 // Store the reference (hash name) into the database
 $query = "INSERT INTO files (file_name) VALUES ('$basename')";

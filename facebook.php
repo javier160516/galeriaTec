@@ -1,34 +1,46 @@
 <?php
 
+use Facebook\Facebook;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
-require '/vendor/autoload.php';
 
+require 'vendor/autoload.php';
 
-# /js-login.php
-$fb = new Facebook\Facebook([
-  'app_id' => '767538411061963',
-  'app_secret' => 'EAAK6EnZAXwssBAMmJmFO8aDKLZBseFqZAa60qfVTlzZAxyQuDRHacOYT0RUKCB5xM2VyqDgkVuXl1tw99miFE48blP7mq6KQB920lnUe1QP75Nx1DTrWZCMTp8B0NFBXGWIM5RkQdNCYZBPy24udK7jEzQ7VU5vUcvYgZCOZBjtYdNWpQ8QqLZCKYvKE4S17MVaUZADVdNtKCssAZDZD',
-  'default_graph_version' => 'v2.10',
-  ]);
+session_start();
+
+if (isset($_SESSION['fb_access_token']) && !empty($_SESSION['fb_access_token'])) {
+    echo 'Ya obtuviste el token ahora puedas hacer cosas con el porque lo tienes el una sessión, prro';
+    echo $_SESSION['fb_access_token'];
+}
+
+try {
+    $fb = new Facebook([
+        'app_id' => '767538411061963',
+        'app_secret' => '09e176ad04b0fe0b4a5540f7c4ae8b37',
+        'default_graph_version' => 'v2.10'
+    ]);
+} catch (FacebookSDKException $e) {
+    echo 'Error when setting Facebook App credentials';
+    exit;
+}
 
 $helper = $fb->getJavaScriptHelper();
 
 try {
-  $accessToken = $helper->getAccessToken();
+    $accessToken = $helper->getAccessToken();
 } catch(FacebookResponseException $e) {
-  // When Graph returns an error
-  echo 'Graph returned an error: ' . $e->getMessage();
-  exit;
+    // When Graph returns an error
+    echo 'Graph returned an error: ' . $e->getMessage();
+    exit;
 } catch(FacebookSDKException $e) {
-  // When validation fails or other local issues
-  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-  exit;
+    // When validation fails or other local issues
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    exit;
 }
 
 if (! isset($accessToken)) {
-  echo 'No cookie set or no OAuth data could be obtained from cookie.';
-  exit;
+    echo 'No cookie set or no OAuth data could be obtained from cookie.';
+    exit;
 }
 
 // Logged in
@@ -41,67 +53,29 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 // You can redirect them to a members-only page.
 //header('Location: https://example.com/members.php');
 
-// ----------------------------------------------------------
+exit;
 
-// $access_token = $_COOKIE['PHPSESSID'];
-// // echo $_COOKIE['PHPSESSID'];
+if (isset($accessToken)) {
+    echo 'hola';
+    $data = [
+        'message' => 'My awesome photo upload example.',
+        'source' => $fb->fileToUpload('https://creativolab.com.mx/gallery/img/me.jpg'),
+    ];
 
-// $fb = new Facebook\Facebook([
-//   'app_id' => '767538411061963',
-//   'app_secret' => 'EAAK6EnZAXwssBAMmJmFO8aDKLZBseFqZAa60qfVTlzZAxyQuDRHacOYT0RUKCB5xM2VyqDgkVuXl1tw99miFE48blP7mq6KQB920lnUe1QP75Nx1DTrWZCMTp8B0NFBXGWIM5RkQdNCYZBPy24udK7jEzQ7VU5vUcvYgZCOZBjtYdNWpQ8QqLZCKYvKE4S17MVaUZADVdNtKCssAZDZD',
-//   'default_graph_version' => 'v14.0',
-//   ]);
+    try {
+        // Returns a `Facebook\FacebookResponse` object
+        $response = $fb->post('/me/photos', $data, $accessToken);
+    } catch(FacebookResponseException $e) {
+        echo 'Graph returned an error: ' . $e->getMessage();
+        exit;
+    } catch(FacebookSDKException $e) {
+        echo 'Facebook SDK returned an error: ' . $e->getMessage();
+        exit;
+    }
 
-// $helper = $fb->getJavaScriptHelper();
+    $graphNode = $response->getGraphNode();
 
-// try {
-//   $accessToken = $helper->getAccessToken();
-// } catch(Facebook\Exceptions\FacebookResponseException $e) {
-//   // When Graph returns an error
-//   echo 'Graph returned an error: ' . $e->getMessage();
-//   exit;
-// } catch(Facebook\Exceptions\FacebookSDKException $e) {
-//   // When validation fails or other local issues
-//   echo 'Facebook SDK returned an error: ' . $e->getMessage();
-//   exit;
-// }
-
-// if (! isset($accessToken)) {
-//   echo 'No cookie set or no OAuth data could be obtained from cookie.';
-//   exit;
-// }
-
-// // Logged in
-// echo '<h3>Access Token</h3>';
-// var_dump($accessToken->getValue());
-
-// $_SESSION['fb_access_token'] = (string) $accessToken;
-
-// ----------------------------------------------------------------
-
-// $fb = new Facebook\Facebook([
-//   'app_id' => '767538411061963',
-//   'app_secret' => 'EAAK6EnZAXwssBAMmJmFO8aDKLZBseFqZAa60qfVTlzZAxyQuDRHacOYT0RUKCB5xM2VyqDgkVuXl1tw99miFE48blP7mq6KQB920lnUe1QP75Nx1DTrWZCMTp8B0NFBXGWIM5RkQdNCYZBPy24udK7jEzQ7VU5vUcvYgZCOZBjtYdNWpQ8QqLZCKYvKE4S17MVaUZADVdNtKCssAZDZD',
-//   'default_graph_version' => 'v14.0',
-//   //'default_access_token' => '{access-token}', // optional
-// ]);
-
-// $data = [
-//   'message' => 'My awesome photo upload example.',
-//   'source' => $fb->fileToUpload('img/e1027b80c89dac19e6eb371ad47d06d0.jpg'),
-// ];
-
-// try {
-//   // Returns a `Facebook\Response` object
-//   $response = $fb->post('/me/photos', $data, $access_token);
-// } catch (Facebook\Exception\ResponseException $e) {
-//   echo 'Graph returned an error: ' . $e->getMessage();
-//   exit;
-// } catch (Facebook\Exception\SDKException $e) {
-//   echo 'Facebook SDK returned an error: ' . $e->getMessage();
-//   exit;
-// }
-
-// $graphNode = $response->getGraphNode();
-
-// echo 'Photo ID: ' . $graphNode['id'];
+    echo 'Photo ID: ' . $graphNode['id'];
+} else {
+    echo 'image not published';
+}

@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<div class="h-screen flex items-center justify-center">
     <?php
     if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
         <script type='text/javascript'>
@@ -81,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php unset($_SESSION['success']);
     } ?>
-    <div class="w-11/12 sm:w-10/12 md:w-6/12 lg:w-4/12 bg-white p-5 rounded-lg shadow-lg">
+    <div class="w-11/12 sm:w-10/12 md:w-6/12 lg:w-4/12 bg-white p-5 rounded-lg shadow-lg mb-5">
         <h1 class="text-center font-bold text-xl mb-5 text-gray-800">Formulario Para Revelar Fotos</h1>
         <form method="POST">
             <div class="mb-3">
@@ -122,10 +121,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
-
-</div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
 <?php
 incluirTemplate('footer');
