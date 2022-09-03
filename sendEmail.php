@@ -74,7 +74,16 @@ function enviarEmail(string $email, string $fullName)
         </head>
         <body>
             <div class='container'>
-                <p class='titulo'>Bienvenid@ $fullName</p>
+                <div style='width: 100%; display: flex; justify-content: space-between;'>
+                    <div style='width: 48%'>
+                        <img src='https://creativolab.com.mx/gallery/public/img/logo.png' height='50' style='left: 0'/>
+                    </div>
+                    <div style='width: 48%; text-align: right;'>
+                        <img src='https://creativolab.com.mx/gallery/public/img/logo-itcancun.png' height='50' style='right: 0'/>
+                    </div>
+                </div>
+                <p class='titulo'>Bienvenid@ Tucán</p>
+                <p>Nos alegra que formes parte de esta gran casa de estudios</p>
                 <p class='descripcion'>Aquí podrás encontrar el enlacé para poder ver tus fotos del evento</p>
                 <div class='container-btn'>
                     <a href='https://creativolab.com.mx/gallery/gallery.php' class='btn' style='color: white;'>Entrar al enlace</a>

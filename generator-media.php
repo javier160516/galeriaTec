@@ -26,16 +26,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EVENTO IT CANCÚN</title>
         <meta property="og:url" content="<?php echo 'https://creativolab.com.mx' . $url ?>" />
-        <meta property="og:title" content="Obten tus fotos del evento de nuevo ingreso del IT CANCÚN" />
-        <meta property="og:description" content="Bienvenido a la galería de fotos del evento de nuevo ingreso del IT CANCÚN" />
+        <meta property="og:title" content="Evento para los de nuevo ingreso del IT CANCÚN" />
+        <meta property="og:description" content="Le damos la bienvenida a los estudiantes de nuevo ingreso del IT Cancún y les deseamos mucho éxito" />
         <meta property="og:image" itemprop="image" content="<?php echo 'https://creativolab.com.mx/gallery/img/' . $nameImage . '.jpg' ?>" />
+        <link rel="stylesheet" href="./public/css/app.css">
         <link rel="stylesheet" href="./public/css/slider.css">
         <script src="public/js/sweetAlert.js"></script>
     </head>
 
     <body>
         <div class="container-principal">
-            <h1>Tus fotos seleccionadas</h1>
+            <header style="width: 100%; display:flex; justify-content: space-between; margin-top: 15px;">
+                <a href="/gallery/gallery.php">
+                    <img src="./public/img/logo.png" class="img-fluid" alt="Logo TECNM" style="height: 100px;">
+                </a>
+                <a href="/gallery/gallery.php">
+                    <img src="./public/img/logo-itcancun.png" class="img-fluid" alt="Logo TECNM" style="height: 100px;">
+                </a>
+            </header>
+            <h1 class="text-2xl uppercase">Tus fotos seleccionadas</h1>
             <section id="container-slider">
                 <a href="javascript: fntExecuteSlide('prev');" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
                 <a href="javascript: fntExecuteSlide('next');" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
@@ -54,10 +63,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <?php foreach ($_GET as $key => $value) :
                         $nameImage = substr($key, 0, -4);
                     ?>
-                        <li style="background-image: url('<?php echo './img/' . $nameImage . '.jpg' ?>'); z-index:0; opacity: 1;"></li>
+                        <li style="background-image: url('<?php echo './img/' . $nameImage . '.jpg' ?>'); z-index:0; opacity: 1; background-size: cover;"></li>
                     <?php endforeach; ?>
                 </ul>
             </section>
+            <div class="mx-auto bg-green-700 mt-5 rounded-lg py-2" style="width: 80%">
+                <p class="text-white text-center">No olvides que puedes compartir tus fotos en facebook.</p>
+            </div>
+            <footer class="w-10/12 mx-auto bottom-0 px-3 pb-4 mt-5">
+                <div class="text-center">
+                    <p class="m-0">Instituto Tecnológico de Cancún - Algunos derechos reservados &copy; <?php echo date('Y') ?></p>
+                    <p class="m-0">Av. Kabah, Km. 3 Cancún Quintana Roo México C.P. 77515, Col. Centro</p>
+                    <p class="m-0"> Teléfono: 01 (998) 8-80-74-32</p>
+                    <a href="https://www.cancun.tecnm.mx" target="_blank" class="text-blue-500">Política de privacidad y manejo de datos personales</a>
+                </div>
+            </footer>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
@@ -78,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     '//connect.facebook.net/es_ES/all.js';
                 document.getElementById('fb-root').appendChild(e);
             }());
+            document.oncontextmenu = function(){return false;}
         </script>
         <script src="./public/js/download.js"></script>
         <script src="./public/js/shareImage.js"></script>

@@ -6,9 +6,9 @@ function shareImagen(page) {
     redirect_uri: `${page}&compartir=true`,
   }, function (response) {
     if (response && !response.error_message) {
+      window.close();
       const buttonDownload = document.querySelector('.download');
       buttonDownload.classList.remove('deshabilitado');
-      // window.close();
       Swal.fire(
         '¡Foto Compartida!',
         'La foto ha sido compartida exitosamente, ya puedes descargar tus fotos',

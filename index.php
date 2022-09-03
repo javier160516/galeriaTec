@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php unset($_SESSION['success']);
     } ?>
     <div class="w-11/12 sm:w-10/12 md:w-6/12 lg:w-4/12 bg-white p-5 rounded-lg shadow-lg mb-5">
-        <h1 class="text-center font-bold text-xl mb-5 text-gray-800">Formulario Para Revelar Fotos</h1>
+        <h1 class="text-center font-bold text-xl mb-5 text-gray-800">¡Consigue tus fotos del evento del IT Cancún!</h1>
         <form method="POST">
             <div class="mb-3">
                 <label for="name" class="font-bold block text-gray-700 mb-2">Nombre(s)</label>
